@@ -40,7 +40,7 @@ sky = pysm.Sky(sky_config, mpi_comm=comm)
 
 
 instrument_bpass = {
-    'use_smoothing' : False,
+    'use_smoothing' : True,
     'nside' : nside,
     'add_noise' : False,
     'use_bandpass' : True,
@@ -48,6 +48,7 @@ instrument_bpass = {
     'channel_names' : ['channel_1'],
     'output_units' : 'uK_RJ',
     'output_directory' : './',
+    'beams' : np.array([10*60]), # beam fwhm in arcmin
     'output_prefix' : 'test',
     'noise_seed' : 1234,
     'pixel_indices' : pixel_indices
@@ -82,3 +83,5 @@ if pixel_indices is None:
 np.testing.assert_array_almost_equal(
         local_map[0],
         complete_map[0][:, :, pixel_indices])
+
+print(local_map[0])
