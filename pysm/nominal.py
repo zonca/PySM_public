@@ -213,6 +213,15 @@ def c1(nside, pixel_indices=None, mpi_comm=None):
         'cmb_seed': 1111
     }]
 
+def c2(nside, pixel_indices=None, mpi_comm=None):
+    return [{
+        'model': 'pre_computed',
+        'A_I': read_map(template('lensed_cmb.fits'), nside, field=0, pixel_indices=pixel_indices, mpi_comm=mpi_comm),
+        'A_Q': read_map(template('lensed_cmb.fits'), nside, field=1, pixel_indices=pixel_indices, mpi_comm=mpi_comm),
+        'A_U': read_map(template('lensed_cmb.fits'), nside, field=2, pixel_indices=pixel_indices, mpi_comm=mpi_comm),
+        'nside': nside
+    }]
+
 def a1(nside, pixel_indices=None, mpi_comm=None):
     return [{
         'model': 'spdust',
